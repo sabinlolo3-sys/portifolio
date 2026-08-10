@@ -991,6 +991,110 @@ footer {
     font-weight:600;
     z-index:4;
 }
+
+
+/* ══════════════════════════════════════════════
+   2026 PORTFOLIO UPDATE · RESPONSIVE COMPATIBILITY
+   Additive overrides only — keeps the original design.
+══════════════════════════════════════════════ */
+img, video, iframe { max-width: 100%; }
+.hero-role-sub {
+  color: rgba(245,242,236,0.78); font-size: 13px; line-height: 1.6;
+  margin: -16px 0 18px; letter-spacing: .3px;
+}
+.current-focus {
+  display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+  max-width: 100%; margin: -4px 0 22px; padding: 7px 12px;
+  border: 1px solid rgba(200,162,87,.22); border-radius: 999px;
+  background: rgba(200,162,87,.08); color: rgba(245,242,236,.62);
+  font: 11px/1.45 'DM Mono', monospace; white-space: normal;
+}
+.current-focus span { width:7px; height:7px; flex:0 0 7px; border-radius:50%; background:var(--accent); }
+.project-update-note { font-size: 13px !important; border-left: 2px solid var(--accent); padding-left: 12px; }
+.new-project { position: relative; }
+.new-project::before {
+  content:'NEW 2026'; position:absolute; top:12px; right:12px; z-index:8;
+  font: 9px/1 'DM Mono', monospace; letter-spacing:1px; color:#fff;
+  background:rgba(13,15,20,.72); border:1px solid rgba(255,255,255,.16);
+  padding:6px 8px; border-radius:999px; backdrop-filter:blur(8px);
+}
+.service-card, .skill-block, .project-card, .cert-card { min-width:0; }
+.services-grid { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.skills-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; border: 0; }
+.skill-image { aspect-ratio: 16/9; height: auto; min-height: 170px; }
+.skill-content { height: auto; }
+.project-desc, .svc-desc, .about-text p, .exp-desc, .exp-bullets li { overflow-wrap:anywhere; }
+.projects-filter { scrollbar-width: thin; }
+.hero-tag-strip { max-height: 100px; overflow:auto; scrollbar-width:thin; }
+
+@media (min-width: 1201px) {
+  .projects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1200px) {
+  section { padding-left: 48px; padding-right: 48px; }
+  #skills { padding-left: 48px; padding-right: 48px; }
+  .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project-card.featured { grid-column: span 1; }
+  .contact-layout { gap: 48px; }
+  .hero-left { padding-left: 48px; padding-right: 42px; }
+}
+
+@media (max-width: 960px) {
+  .about-visual { display:block; width:min(100%, 360px); margin:0 auto 16px; }
+  .about-frame { width:100%; max-width:360px; height:auto; aspect-ratio:3/4; }
+  .about-badge { right: 8px; bottom: 18px; }
+  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .exp-nav { overflow-x:auto; flex-wrap:nowrap; padding-bottom:8px; scrollbar-width:thin; }
+  .exp-nav-item { min-width:190px; flex:0 0 auto; }
+  .hero-tag-strip { position:relative; left:auto; right:auto; bottom:auto; margin:24px 20px 24px; max-height:none; }
+  .hero-right { padding:50px 20px 0; min-height:430px; justify-content:flex-start; }
+}
+
+@media (max-width: 760px) {
+  section, #skills { padding:56px 20px; }
+  nav { padding:12px 18px; }
+  nav.scrolled { padding:10px 18px; }
+  .nav-cta { padding:8px 14px; }
+  .hero-left { padding:96px 20px 52px; }
+  .hero-actions > a { flex:1 1 150px; justify-content:center; }
+  .hero-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+  .stat-num { font-size:28px; }
+  .stat-label { font-size:9px; }
+  .hero-avatar { width:min(62vw,220px); height:min(62vw,220px); }
+  .services-grid, .skills-grid, .projects-grid, .certs-grid, .gallery-grid { grid-template-columns:1fr; }
+  .project-card.featured, .g-item.wide { grid-column:span 1 !important; }
+  .gallery-grid { gap:14px; }
+  .g-item { min-height:220px; }
+  .projects-filter { flex-wrap:nowrap; overflow-x:auto; padding-bottom:8px; }
+  .filter-btn { flex:0 0 auto; }
+  .project-stats { flex-wrap:wrap; }
+  .footer-top { grid-template-columns:1fr; }
+  .theme-switcher { right:16px; bottom:16px; }
+  .back-top { left:16px; bottom:16px; }
+  .current-focus { font-size:10px; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: clamp(44px, 14vw, 58px); }
+  h2 { font-size: clamp(30px, 10vw, 40px); }
+  .hero-role { font-size:17px; }
+  .hero-role-sub { font-size:12px; }
+  .hero-stats { grid-template-columns:1fr 1fr 1fr; }
+  .skill-content, .project-body { padding:18px; }
+  .skill-block h3 { font-size:20px; }
+  .sp { font-size:11px; padding:6px 10px; }
+  .exp-title { font-size:23px; }
+  .about-badge { right:6px; padding:10px 13px; }
+  .form-group input, .form-group textarea, .form-group select { font-size:16px; }
+  footer { padding-left:20px; padding-right:20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+
 </style>
 </head>
 <body>
@@ -1036,6 +1140,8 @@ footer {
     <div class="hero-eyebrow"><span class="pulse"></span>Available for work · Kigali, Rwanda</div>
     <h1>Sabin<br><span class="italic">Tuyizere</span></h1>
     <div class="hero-role">Photographer · Videographer · Web Developer</div>
+    <div class="hero-role-sub">IT Technician · Digital Systems · Community Technology</div>
+    <div class="current-focus"><span></span> Current focus: BCIEA · Pink Youth Rising · Whole Woman Ulinzi Movement</div>
     <p class="hero-bio">
       I create visual content, build websites and support digital projects based in Kigali, Rwanda. I combine technical skills with creative vision to deliver real results for clients and communities.
     </p>
@@ -1077,6 +1183,10 @@ footer {
       <span class="h-tag">PHP</span><span class="h-tag">MySQL</span>
       <span class="h-tag">JavaScript</span><span class="h-tag">Photography</span>
       <span class="h-tag">Videography</span><span class="h-tag">Editing</span>
+      <span class="h-tag">Bootstrap</span><span class="h-tag">Hostinger</span>
+      <span class="h-tag">GitHub</span><span class="h-tag">Digital Systems</span>
+      <span class="h-tag">CRM</span><span class="h-tag">AI Tools</span>
+      <span class="h-tag">Facilitation</span><span class="h-tag">NGO Tech</span>
     </div>
   </div>
 </section>
@@ -1105,9 +1215,14 @@ footer {
       <span class="chip chip-outline">Photography</span>
       <span class="chip chip-outline">Videography</span>
       <span class="chip chip-outline">IT Support</span>
+      <span class="chip chip-outline">Digital Systems</span>
+      <span class="chip chip-outline">Program Facilitation</span>
+      <span class="chip chip-outline">Health Tech</span>
+      <span class="chip chip-outline">CRM & Digital Communication</span>
     </div>
     <p>I am based in Kigali City, Kicukiro. My goal is to contribute to making the world a better place while advancing my career through innovative projects and continuous learning. I believe technology and creative media together can transform communities.</p>
     <p>I hold an A2 Diploma in Software Development from G.S BTR Rwamiko TSS and I am currently studying Business Information Technology at the University of Tourism Technology (UTB). I have hands-on experience in photography, videography, web development, and IT support.</p>
+    <p>I currently support Breast Cancer Initiative East Africa (BCIEA) as an IT Technician, combining web development, digital systems, media, communication support, youth facilitation, and community technology. My recent work includes the Whole Woman Ulinzi Movement digital platform, Pink Youth Rising, digital health assistant concepts, sponsor/partner CRM workflows, and technology projects for health, business, tourism, and agriculture.</p>
     <div class="contact-row">
       <a class="contact-link" href="mailto:sabinlolo3@gmail.com">
         <svg class="ci" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -1161,6 +1276,28 @@ footer {
       <div class="svc-icon">🎓</div>
       <div class="svc-title">Teaching & Mentoring</div>
       <div class="svc-desc">Teaching assistance and mentoring in technology and digital skills, especially for students and youth who are beginning their journey in IT.</div>
+    </div>
+
+    <!-- NEW · DIGITAL PLATFORMS -->
+    <div class="service-card">
+      <div class="svc-icon">🧩</div>
+      <div class="svc-title">Digital Platforms & Admin Systems</div>
+      <div class="svc-desc">Registration systems, user accounts, role-based admin dashboards, forms, content management, reporting, file uploads, and operational workflows for organisations and events.</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🗄️</div>
+      <div class="svc-title">Database & CRM Systems</div>
+      <div class="svc-desc">MySQL database design, sponsor and partner pipelines, contact directories, lead classification, records management, and structured data workflows that help teams stay organised.</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🧠</div>
+      <div class="svc-title">Youth Program Facilitation</div>
+      <div class="svc-desc">Technology and strategy facilitation for youth teams, including assignments, digital tools, presentations, project workflows, team coordination, and practical innovation activities.</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">💗</div>
+      <div class="svc-title">Digital Health & Community Tech</div>
+      <div class="svc-desc">Health-awareness websites, WhatsApp assistant concepts, community information systems, NGO digital workflows, outreach tools, and technology that supports access to trusted information.</div>
     </div>
   </div>
 </section>
@@ -1263,6 +1400,81 @@ footer {
       </div>
     </div>
 
+
+    <!-- PLATFORM SYSTEMS -->
+    <div class="skill-block">
+      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop" alt="Digital Platforms and Database Systems" class="skill-image" loading="lazy">
+      <div class="skill-content">
+        <div class="skill-block-icon icon-blue">🧩</div>
+        <h3>Platforms & Admin Systems</h3>
+        <div class="skill-pills">
+          <span class="sp">Admin Dashboards</span><span class="sp">Authentication</span>
+          <span class="sp">User Roles</span><span class="sp">CRUD Systems</span>
+          <span class="sp">Database Design</span><span class="sp">File Uploads</span>
+          <span class="sp">Forms & Workflows</span><span class="sp">Reporting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEPLOYMENT & INTEGRATIONS -->
+    <div class="skill-block">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="Hosting Deployment and Integrations" class="skill-image" loading="lazy">
+      <div class="skill-content">
+        <div class="skill-block-icon icon-green">🚀</div>
+        <h3>Deployment & Integrations</h3>
+        <div class="skill-pills">
+          <span class="sp">Hostinger</span><span class="sp">GitHub</span>
+          <span class="sp">SSL / DNS</span><span class="sp">Stripe</span>
+          <span class="sp">PayPal</span><span class="sp">MTN MoMo</span>
+          <span class="sp">QR Codes</span><span class="sp">Responsive Deployment</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI & PRODUCTIVITY -->
+    <div class="skill-block">
+      <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop" alt="AI and Productivity Tools" class="skill-image" loading="lazy">
+      <div class="skill-content">
+        <div class="skill-block-icon icon-gold">🤖</div>
+        <h3>AI & Productivity Tools</h3>
+        <div class="skill-pills">
+          <span class="sp">Gemini</span><span class="sp">NotebookLM</span>
+          <span class="sp">Notion</span><span class="sp">Google Sheets</span>
+          <span class="sp">Webflow</span><span class="sp">AI Assistants</span>
+          <span class="sp">Prompt Design</span><span class="sp">WhatsApp Concepts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRAM, CRM & COMMUNICATION -->
+    <div class="skill-block">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop" alt="Program Facilitation and Digital Communication" class="skill-image" loading="lazy">
+      <div class="skill-content">
+        <div class="skill-block-icon icon-red">📣</div>
+        <h3>Programs, CRM & Communication</h3>
+        <div class="skill-pills">
+          <span class="sp">Facilitation</span><span class="sp">CRM Pipelines</span>
+          <span class="sp">Partner Research</span><span class="sp">Sponsor Outreach</span>
+          <span class="sp">Presentations</span><span class="sp">Reports</span>
+          <span class="sp">Team Coordination</span><span class="sp">Event Tech Support</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIELD MEDIA -->
+    <div class="skill-block">
+      <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1200&auto=format&fit=crop" alt="Field Media and Event Production" class="skill-image" loading="lazy">
+      <div class="skill-content">
+        <div class="skill-block-icon icon-green">🎥</div>
+        <h3>Field Media & Event Production</h3>
+        <div class="skill-pills">
+          <span class="sp">Camera Operation</span><span class="sp">Event Coverage</span>
+          <span class="sp">Lighting</span><span class="sp">Gimbal Work</span>
+          <span class="sp">Interview Setup</span><span class="sp">Audio Handling</span>
+          <span class="sp">Color Grading</span><span class="sp">Field Documentation</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1299,6 +1511,16 @@ footer {
   <span class="exp-nav-co">BCIEA</span>
   <span class="exp-nav-role">IT Technician</span>
 </div>
+      <div class="exp-nav-item" onclick="showExp('pink-youth',this)">
+        <span class="exp-nav-year">2026 – Present</span>
+        <span class="exp-nav-co">Pink Youth Rising · BCIEA / ASYV</span>
+        <span class="exp-nav-role">Program Facilitator & Digital Support</span>
+      </div>
+      <div class="exp-nav-item" onclick="showExp('wwum',this)">
+        <span class="exp-nav-year">2026 – Present</span>
+        <span class="exp-nav-co">Whole Woman Ulinzi Movement</span>
+        <span class="exp-nav-role">Web Platform & Digital Systems</span>
+      </div>
     </div>
     <div class="exp-detail">
       <div class="exp-card active" id="exp-bbb">
@@ -1377,6 +1599,10 @@ footer {
     <li>Contribute to innovative healthcare awareness technology projects</li>
 
     <li>Collaborate with teams to improve digital workflow and communication</li>
+    <li>Support Pink Youth Rising facilitation, digital tools, assignments, presentations, and student team workflows</li>
+    <li>Build and maintain digital systems for the Whole Woman Ulinzi Movement, including registration, donations, sponsors, volunteers, stories, and administration</li>
+    <li>Support sponsor and partner CRM research, contact organisation, outreach data, reports, and event communication</li>
+    <li>Contribute to field documentation, photography, video, website content, and technical support for community activities</li>
   </ul>
 
   <div class="exp-tech">
@@ -1385,8 +1611,41 @@ footer {
     <span class="et">Technical Support</span>
     <span class="et">Media Production</span>
     <span class="et">Problem Solving</span>
+    <span class="et">CRM</span>
+    <span class="et">Program Facilitation</span>
+    <span class="et">Digital Communication</span>
+    <span class="et">PHP / MySQL</span>
+    <span class="et">Event Technology</span>
   </div>
 </div>
+
+      <div class="exp-card" id="exp-pink-youth">
+        <div class="exp-card-meta"><span class="exp-badge" style="background:#9c3d73;color:#fff">Current Program</span><span class="exp-date">2026 – Present</span></div>
+        <div class="exp-title">Program Facilitator & Digital Support</div>
+        <div class="exp-company">Pink Youth Rising · BCIEA / Agahozo-Shalom Youth Village</div>
+        <p class="exp-desc">Facilitate technology, strategy, and project-development sessions for youth teams while supporting the digital workflow of the Pink Youth Rising competition and learning program.</p>
+        <ul class="exp-bullets">
+          <li>Support a 16-week youth program structured around five multidisciplinary teams</li>
+          <li>Facilitate practical sessions on strategy, leverage, digital campaigns, systems thinking, and project execution</li>
+          <li>Help teams use Notion, NotebookLM, Gemini, Google Sheets, Webflow, presentations, and custom digital tools</li>
+          <li>Prepare recaps, assignments, project guidance, team coordination, and Rwanda-based practical examples</li>
+        </ul>
+        <div class="exp-tech"><span class="et">Facilitation</span><span class="et">Notion</span><span class="et">NotebookLM</span><span class="et">Gemini</span><span class="et">Google Sheets</span><span class="et">Webflow</span><span class="et">Youth Programs</span></div>
+      </div>
+
+      <div class="exp-card" id="exp-wwum">
+        <div class="exp-card-meta"><span class="exp-badge" style="background:#d94b8e;color:#fff">Current Project</span><span class="exp-date">2026 – Present</span></div>
+        <div class="exp-title">Web Platform & Digital Systems</div>
+        <div class="exp-company">Whole Woman Ulinzi Movement · BCIEA · Kigali</div>
+        <p class="exp-desc">Develop and support the digital platform for the Whole Woman Ulinzi Movement, a year-round movement and October 2026 launch connecting awareness, participation, fundraising, commerce, volunteers, sponsors, partners, and community stories.</p>
+        <ul class="exp-bullets">
+          <li>Built participant registration, user accounts, admin dashboard, sponsors, partners, volunteer, donation, story, gallery, shop, product, and order modules</li>
+          <li>Worked with PHP, MySQL, multilingual EN/RW/FR content, QR codes, payment options, file uploads, database repair, and deployment on Hostinger</li>
+          <li>Supported event route information, countdown, sponsor packages, payment workflow, media assets, and responsive user experience</li>
+          <li>Maintained and debugged production issues including database schema, uploads, server errors, and content updates</li>
+        </ul>
+        <div class="exp-tech"><span class="et">PHP</span><span class="et">MySQL</span><span class="et">Hostinger</span><span class="et">Responsive UI</span><span class="et">Payments</span><span class="et">QR Codes</span><span class="et">Admin Systems</span><span class="et">Multilingual</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1397,6 +1656,7 @@ footer {
     <div class="section-tag">Portfolio</div>
     <h2>Projects I have <em>built</em></h2>
     <p>A selection of websites and technology projects I am building to solve real needs in business, tourism, health awareness, and online services in Rwanda and beyond.</p>
+    <p class="project-update-note">Recent additions include the Whole Woman Ulinzi Movement platform, Pink Youth Rising digital program support, SYSARA, expanded digital health assistants, cooperative/agriculture system design, and CRM workflows.</p>
   </div>
   <div class="projects-filter fade-in">
     <button class="filter-btn active" data-filter="all">All Projects</button>
@@ -1603,6 +1863,91 @@ footer {
       </div>
     </div>
 
+
+
+    <!-- 07 · WHOLE WOMAN ULINZI MOVEMENT -->
+    <div class="project-card new-project" data-category="web">
+      <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#4a1231,#d94b8e);"><div class="p-icon">🎗️</div></div>
+      <div class="project-body">
+        <div class="project-top"><span class="project-num">07 · Major Platform</span><div class="project-links"><a class="project-link-btn" href="https://wwulinzimovement.com/" target="_blank" rel="noopener" title="Live website">↗</a></div></div>
+        <div class="project-name">Whole Woman Ulinzi Movement Platform</div>
+        <div class="project-stack-tag">PHP · MySQL · Admin Dashboard · Payments · Multilingual · Hostinger</div>
+        <div class="project-desc">A complete movement platform for registrations, donations, sponsors, partners, volunteers, stories, gallery, products, orders, event information, route content, multilingual pages, and administration.</div>
+        <div class="project-tags"><span class="pt">PHP</span><span class="pt">MySQL</span><span class="pt">EN/RW/FR</span><span class="pt">Payments</span><span class="pt">QR</span><span class="pt">NGO</span></div>
+      </div>
+    </div>
+
+    <!-- 08 · PINK YOUTH RISING -->
+    <div class="project-card new-project" data-category="community">
+      <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#541b45,#a83f83);"><div class="p-icon">🌸</div></div>
+      <div class="project-body">
+        <div class="project-top"><span class="project-num">08 · Youth Program</span></div>
+        <div class="project-name">Pink Youth Rising Digital Program Support</div>
+        <div class="project-stack-tag">Facilitation · Notion · Gemini · NotebookLM · Sheets · Webflow</div>
+        <div class="project-desc">Digital and facilitation workflow supporting a 16-week youth competition with multidisciplinary teams, assignments, strategy sessions, project systems, presentations, and practical innovation activities.</div>
+        <div class="project-tags"><span class="pt">Youth</span><span class="pt">Facilitation</span><span class="pt">Digital Tools</span><span class="pt">Strategy</span><span class="pt">Community</span></div>
+      </div>
+    </div>
+
+    <!-- 09 · SYSARA -->
+    <div class="project-card new-project" data-category="ai">
+      <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#0f223b,#345d91);"><div class="p-icon">🧠</div></div>
+      <div class="project-body">
+        <div class="project-top"><span class="project-num">09 · System Blueprint</span></div>
+        <div class="project-name">SYSARA Youth Intelligence System</div>
+        <div class="project-stack-tag">System Design · Intelligence Layer · Youth Opportunities · SIGNAL Network</div>
+        <div class="project-desc">A developing youth-system concept designed to connect skills, teams, viable sectors, opportunities, income pathways, and an intelligence layer so young people can build practical economic pathways.</div>
+        <div class="project-tags"><span class="pt">System Design</span><span class="pt">Youth</span><span class="pt">AI Concept</span><span class="pt">Strategy</span></div>
+      </div>
+    </div>
+
+    <!-- 10 · DIGITAL HEALTH ASSISTANTS -->
+    <div class="project-card new-project" data-category="ai">
+      <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#143a32,#2e8b72);"><div class="p-icon">💬</div></div>
+      <div class="project-body">
+        <div class="project-top"><span class="project-num">10 · Health Tech</span></div>
+        <div class="project-name">IROZA · AKALIZA · MUGWANEZA Health Assistants</div>
+        <div class="project-stack-tag">WhatsApp · AI Concept · Health Education · Multilingual Access</div>
+        <div class="project-desc">A family of digital health assistant concepts: IROZA for breast health, AKALIZA for cervical health, and MUGWANEZA for cardiovascular disease and diabetes awareness, designed for accessible community support.</div>
+        <div class="project-tags"><span class="pt">AI</span><span class="pt">WhatsApp</span><span class="pt">Health</span><span class="pt">Community</span><span class="pt">Multilingual</span></div>
+      </div>
+    </div>
+
+    <!-- 11 · UNIVERSAL CARS RENTAL -->
+    <div class="project-card new-project" data-category="web">
+      <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#191d27,#46536b);"><div class="p-icon">🚙</div></div>
+      <div class="project-body">
+        <div class="project-top"><span class="project-num">11 · Booking Platform</span></div>
+        <div class="project-name">Universal Cars Rental Ltd</div>
+        <div class="project-stack-tag">PHP · MySQL · Vehicle Listings · Booking · Admin · Payments</div>
+        <div class="project-desc">An expanded car-rental platform with vehicle details, booking flows, customer booking management, admin controls, database-backed records, and payment integration planning for Rwanda.</div>
+        <div class="project-tags"><span class="pt">Booking</span><span class="pt">PHP</span><span class="pt">MySQL</span><span class="pt">Admin</span><span class="pt">Payments</span></div>
+      </div>
+    </div>
+
+    <!-- 12 · UMUSARURO COOPERATIVE SYSTEM -->
+    <div class="project-card new-project" data-category="community">
+      <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#17351f,#5d8f3f);"><div class="p-icon">🌾</div></div>
+      <div class="project-body">
+        <div class="project-top"><span class="project-num">12 · In Development</span></div>
+        <div class="project-name">Umusaruro Cooperative System</div>
+        <div class="project-stack-tag">Cooperative Management · Produce Marketplace · SMS/USSD · MoMo Concept</div>
+        <div class="project-desc">A cooperative and produce-management system design connecting farmers, cooperatives, and buyers through member records, input distribution, harvest forecasting, produce collection, inventory, payments, orders, and future SMS/USSD access.</div>
+        <div class="project-tags"><span class="pt">Agriculture</span><span class="pt">Cooperative</span><span class="pt">Marketplace</span><span class="pt">SMS/USSD</span><span class="pt">MoMo</span></div>
+      </div>
+    </div>
+
+    <!-- 13 · BCIEA CRM -->
+    <div class="project-card new-project" data-category="community">
+      <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#2b1830,#74456f);"><div class="p-icon">📊</div></div>
+      <div class="project-body">
+        <div class="project-top"><span class="project-num">13 · Operations</span></div>
+        <div class="project-name">BCIEA Sponsor & Partner CRM Workflow</div>
+        <div class="project-stack-tag">CRM · Contact Research · Partner Classification · Outreach Data</div>
+        <div class="project-desc">Structured sponsor and partner pipeline work covering organisations, contact research, classifications, outreach readiness, partnership alignment, and organised data for fundraising and strategic engagement.</div>
+        <div class="project-tags"><span class="pt">CRM</span><span class="pt">Partnerships</span><span class="pt">Research</span><span class="pt">Outreach</span><span class="pt">NGO</span></div>
+      </div>
+    </div>
   </div>
 </section>
 <!-- ════ MEDIA GALLERY ════ -->
@@ -1879,6 +2224,11 @@ footer {
           <option>Videography & Editing</option>
           <option>IT Support</option>
           <option>Digital Communication</option>
+          <option>Digital Platforms & Admin Systems</option>
+          <option>Database / CRM Systems</option>
+          <option>NGO Digital Support</option>
+          <option>Youth Program Facilitation</option>
+          <option>Health & Community Technology</option>
           <option>Other / General Inquiry</option>
         </select>
       </div>
@@ -1899,7 +2249,7 @@ footer {
   <div class="footer-top">
     <div class="footer-brand">
       <div class="name">Sabin Tuyizere</div>
-      <div class="tagline">Photographer · Videographer · Web Developer<br>Based in Kigali, Rwanda · Open to new opportunities</div>
+      <div class="tagline">Photographer · Videographer · Web Developer<br>Based in Kigali, Rwanda · Open to new opportunities<br>IT Technician · Digital Systems · Community Technology</div>
     </div>
     <div class="footer-col">
       <h4>Navigate</h4>
@@ -1974,7 +2324,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
     // Re-apply featured span if showing all
     document.querySelectorAll('.project-card.featured').forEach(c => {
-      c.style.gridColumn = (f === 'all' && window.innerWidth > 960) ? 'span 2' : '';
+      c.style.gridColumn = (f === 'all' && window.innerWidth > 1200) ? 'span 2' : '';
     });
   });
 });
@@ -2024,5 +2374,6 @@ function submitForm() {
   setTimeout(() => document.getElementById('formSuccess').style.display = 'none', 5000);
 }
 </script>
+<!-- Updated August 2026: added current BCIEA work, Pink Youth Rising, WWUM, new projects, skills, services, and responsive compatibility. -->
 </body>
 </html>
