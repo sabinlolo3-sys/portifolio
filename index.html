@@ -119,6 +119,24 @@ h1.hero-h .it{font-style:italic;font-weight:400;color:var(--ochre2);}
 .hero-scroll-cue{position:absolute;bottom:34px;left:56px;z-index:3;display:flex;align-items:center;gap:10px;font-size:11px;color:rgba(244,236,220,.35);}
 .hero-scroll-cue .line{width:34px;height:1px;background:rgba(244,236,220,.35);}
 
+/* hero portrait — real photo, tilts in 3D with the cursor */
+.hero-photo-wrap{position:absolute;top:140px;right:76px;z-index:4;perspective:1000px;}
+.hero-photo{
+  position:relative;width:250px;aspect-ratio:3/4;border-radius:6px;overflow:hidden;
+  border:1px solid rgba(244,236,220,.16);box-shadow:0 40px 90px rgba(0,0,0,.5);
+  transform-style:preserve-3d;transition:transform .12s ease-out;
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block;transform:translateZ(0);}
+.hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(23,19,16,.75) 0%,transparent 45%);pointer-events:none;}
+.hero-photo-ring{position:absolute;top:-26px;left:-26px;width:110px;height:110px;border:1px solid rgba(232,170,92,.3);border-radius:50%;transform:translateZ(30px);pointer-events:none;}
+.hero-photo-tag{position:absolute;left:16px;right:16px;bottom:14px;z-index:2;transform:translateZ(40px);}
+.hero-photo-tag .n{font-family:'Fraunces',serif;font-size:15px;color:var(--paper);}
+.hero-photo-tag .l{font-size:10px;color:rgba(244,236,220,.55);font-family:'Space Mono',monospace;margin-top:2px;}
+@media (max-width:980px){
+  .hero-photo-wrap{position:static;margin:34px 0 8px;perspective:1000px;}
+  .hero-photo{width:190px;}
+}
+
 /* ═════════════════════════════════════════════════════════
    SECTION SHELL
 ═════════════════════════════════════════════════════════ */
@@ -146,19 +164,20 @@ h2.h2 em{font-style:italic;font-weight:400;}
   display:flex;flex-direction:column;justify-content:space-between;
   padding:34px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.45);
 }
-.id-card::before{content:'';position:absolute;inset:0;background:
-  repeating-linear-gradient(115deg, rgba(201,138,52,.05) 0 2px, transparent 2px 26px);
+.id-card::before{content:'';position:absolute;inset:0;z-index:1;background:
+  linear-gradient(to top, rgba(23,19,16,.88) 0%, rgba(23,19,16,.15) 55%, rgba(23,19,16,.35) 100%);
   pointer-events:none;}
-.id-monogram{font-family:'Fraunces',serif;font-size:120px;font-weight:600;color:var(--ochre);opacity:.9;line-height:.8;letter-spacing:-6px;transform:translateZ(40px);}
-.id-meta{transform:translateZ(30px);}
+.id-card-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateZ(0);}
+.id-monogram{position:relative;z-index:2;font-family:'Fraunces',serif;font-size:64px;font-weight:600;color:var(--ochre2);opacity:.95;line-height:.8;letter-spacing:-3px;transform:translateZ(40px);}
+.id-meta{position:relative;z-index:2;transform:translateZ(30px);}
 .id-meta .name{font-family:'Fraunces',serif;font-size:22px;color:var(--paper);margin-bottom:4px;}
 .id-meta .role{font-size:12px;color:rgba(244,236,220,.45);font-family:'Space Mono',monospace;}
-.id-ring{position:absolute;top:-40px;right:-40px;width:180px;height:180px;border:1px solid rgba(232,170,92,.25);border-radius:50%;transform:translateZ(10px);}
+.id-ring{position:absolute;top:-40px;right:-40px;width:180px;height:180px;border:1px solid rgba(232,170,92,.25);border-radius:50%;transform:translateZ(10px);z-index:2;}
 .id-ring::after{content:'';position:absolute;inset:22px;border:1px solid rgba(232,170,92,.18);border-radius:50%;}
 .about-badge{
   position:absolute;bottom:-18px;right:-18px;background:var(--ochre);color:var(--ink);
   border-radius:6px;padding:16px 20px;box-shadow:0 16px 40px rgba(0,0,0,.35);
-  transform:translateZ(60px);
+  transform:translateZ(60px);z-index:3;
 }
 .about-badge .num{font-family:'Fraunces',serif;font-size:26px;font-weight:700;line-height:1;}
 .about-badge .lbl{font-size:10px;letter-spacing:.5px;margin-top:2px;}
@@ -407,6 +426,13 @@ footer{background:var(--ink);padding:60px 56px 0;}
 <section id="hero">
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-veil"></div>
+  <div class="hero-photo-wrap">
+    <div class="hero-photo" id="heroPhoto">
+      <img src="assets/images/hero-portrait.jpg" alt="Portrait of Sabin Tuyizere" loading="eager">
+      <div class="hero-photo-ring"></div>
+      <div class="hero-photo-tag"><div class="n serif">Sabin Tuyizere</div><div class="l">KICUKIRO · KIGALI</div></div>
+    </div>
+  </div>
   <div class="hero-inner">
     <div class="hero-eyebrow"><span class="dot"></span>Available for work · Kigali, Rwanda</div>
     <h1 class="hero-h serif">Sabin<br><span class="it">Tuyizere</span></h1>
@@ -432,6 +458,7 @@ footer{background:var(--ink);padding:60px 56px 0;}
 <section id="about" class="on-dark">
   <div class="id-card-wrap reveal">
     <div class="id-card" id="idCard">
+      <img class="id-card-photo" src="assets/images/about-portrait.jpg" alt="Sabin Tuyizere at work">
       <div class="id-ring"></div>
       <div class="id-monogram serif">ST</div>
       <div class="id-meta">
@@ -623,62 +650,62 @@ footer{background:var(--ink);padding:60px 56px 0;}
   <div class="proj-grid reveal" id="projGrid">
 
     <div class="proj-card wide" data-category="web">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/ikirere-market/900/500" alt="Ikirere Market e-commerce interface" loading="lazy"><span class="proj-num">01 · Featured</span><a class="proj-link" href="#" aria-label="View Ikirere Market">↗</a></div>
+      <div class="proj-thumb"><img src="assets/images/projects/01-ikirere-market.jpg" alt="Ikirere Market e-commerce interface" loading="lazy"><span class="proj-num">01 · Featured</span><a class="proj-link" href="#" aria-label="View Ikirere Market">↗</a></div>
       <div class="proj-body"><div class="proj-name serif">Ikirere Market</div><div class="proj-stack">PHP · Bootstrap · MySQL · Admin Dashboard</div><div class="proj-desc">Online shopping platform with product categories, smart search, cart, checkout, admin upload panel and full order management for Rwanda.</div><div class="proj-tags"><span class="pt2">PHP</span><span class="pt2">Bootstrap</span><span class="pt2">MySQL</span></div></div>
     </div>
 
     <div class="proj-card" data-category="web">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/rwanda-tourism/700/440" alt="Universal Tour Rwanda website" loading="lazy"><span class="proj-num">02</span><a class="proj-link" href="#" aria-label="View Universal Tour Rwanda">↗</a></div>
+      <div class="proj-thumb"><img src="assets/images/projects/02-universal-tour-rwanda.jpg" alt="Universal Tour Rwanda website" loading="lazy"><span class="proj-num">02</span><a class="proj-link" href="#" aria-label="View Universal Tour Rwanda">↗</a></div>
       <div class="proj-body"><div class="proj-name serif">Universal Tour Rwanda</div><div class="proj-stack">HTML · CSS · Bootstrap</div><div class="proj-desc">Tourism website with destinations, packages and travel information showcasing Rwanda's beauty.</div><div class="proj-tags"><span class="pt2">HTML</span><span class="pt2">CSS</span></div></div>
     </div>
 
     <div class="proj-card" data-category="web">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/car-rental-rw/700/440" alt="Sabin Cars Rental Rwanda booking site" loading="lazy"><span class="proj-num">03</span><a class="proj-link" href="#" aria-label="View Sabin Cars Rental">↗</a></div>
+      <div class="proj-thumb"><img src="assets/images/projects/03-sabin-cars-rental.jpg" alt="Sabin Cars Rental Rwanda booking site" loading="lazy"><span class="proj-num">03</span><a class="proj-link" href="#" aria-label="View Sabin Cars Rental">↗</a></div>
       <div class="proj-body"><div class="proj-name serif">Sabin Cars Rental Rwanda</div><div class="proj-stack">HTML · CSS · Responsive</div><div class="proj-desc">Car rental booking website with vehicle listings, booking forms and pricing.</div><div class="proj-tags"><span class="pt2">HTML</span><span class="pt2">CSS</span></div></div>
     </div>
 
     <div class="proj-card" data-category="ai">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/iroza-ai/700/440" alt="IROZA AI health chatbot concept" loading="lazy"><span class="proj-num">04</span><a class="proj-link" href="#" aria-label="View IROZA AI Chatbot">↗</a></div>
+      <div class="proj-thumb"><img src="assets/images/projects/04-iroza-ai-chatbot.jpg" alt="IROZA AI health chatbot concept" loading="lazy"><span class="proj-num">04</span><a class="proj-link" href="#" aria-label="View IROZA AI Chatbot">↗</a></div>
       <div class="proj-body"><div class="proj-name serif">IROZA AI Chatbot</div><div class="proj-stack">AI Concept · WhatsApp · Health</div><div class="proj-desc">A WhatsApp-based AI chatbot concept for breast health awareness across Rwanda.</div><div class="proj-tags"><span class="pt2">AI</span><span class="pt2">WhatsApp</span></div></div>
     </div>
 
     <div class="proj-card wide" data-category="community">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/stroke-action-rw/900/500" alt="Stroke Action Rwanda health awareness website" loading="lazy"><span class="proj-num">05 · Health Project</span><a class="proj-link" href="https://www.strokeactionrwanda.org" target="_blank" rel="noopener" aria-label="Visit Stroke Action Rwanda">↗</a></div>
+      <div class="proj-thumb"><img src="assets/images/projects/05-stroke-action-rwanda.jpg" alt="Stroke Action Rwanda health awareness website" loading="lazy"><span class="proj-num">05 · Health Project</span><a class="proj-link" href="https://www.strokeactionrwanda.org" target="_blank" rel="noopener" aria-label="Visit Stroke Action Rwanda">↗</a></div>
       <div class="proj-body"><div class="proj-name serif">Stroke Action Rwanda</div><div class="proj-stack">HTML · CSS · Bootstrap · NGO</div><div class="proj-desc">A professional health awareness website supporting stroke education, prevention, community engagement, partnerships and donations.</div><div class="proj-tags"><span class="pt2">Healthcare</span><span class="pt2">NGO</span><span class="pt2">Responsive</span></div></div>
     </div>
 
     <div class="proj-card" data-category="web">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/ulinzi-platform/700/440" alt="Whole Woman Ulinzi Movement platform" loading="lazy"><span class="proj-num">06 · Major Platform</span><a class="proj-link" href="https://wwulinzimovement.com/" target="_blank" rel="noopener" aria-label="Visit Whole Woman Ulinzi Movement">↗</a></div>
+      <div class="proj-thumb"><img src="assets/images/projects/06-whole-woman-ulinzi-movement.jpg" alt="Whole Woman Ulinzi Movement platform" loading="lazy"><span class="proj-num">06 · Major Platform</span><a class="proj-link" href="https://wwulinzimovement.com/" target="_blank" rel="noopener" aria-label="Visit Whole Woman Ulinzi Movement">↗</a></div>
       <div class="proj-body"><div class="proj-name serif">Whole Woman Ulinzi Movement</div><div class="proj-stack">PHP · MySQL · Multilingual · Payments</div><div class="proj-desc">A complete movement platform for registration, donations, sponsors, volunteers, stories and administration.</div><div class="proj-tags"><span class="pt2">PHP</span><span class="pt2">MySQL</span><span class="pt2">EN/RW/FR</span></div></div>
     </div>
 
     <div class="proj-card" data-category="community">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/pink-youth-rising/700/440" alt="Pink Youth Rising program" loading="lazy"><span class="proj-num">07 · Youth Program</span></div>
+      <div class="proj-thumb"><img src="assets/images/projects/07-pink-youth-rising.jpg" alt="Pink Youth Rising program" loading="lazy"><span class="proj-num">07 · Youth Program</span></div>
       <div class="proj-body"><div class="proj-name serif">Pink Youth Rising</div><div class="proj-stack">Facilitation · Notion · Gemini · Webflow</div><div class="proj-desc">Digital and facilitation workflow supporting a 16-week youth competition across five disciplinary teams.</div><div class="proj-tags"><span class="pt2">Youth</span><span class="pt2">Strategy</span></div></div>
     </div>
 
     <div class="proj-card" data-category="ai">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/sysara-system/700/440" alt="SYSARA youth intelligence system concept" loading="lazy"><span class="proj-num">08 · System Blueprint</span></div>
+      <div class="proj-thumb"><img src="assets/images/projects/08-sysara-system.jpg" alt="SYSARA youth intelligence system concept" loading="lazy"><span class="proj-num">08 · System Blueprint</span></div>
       <div class="proj-body"><div class="proj-name serif">SYSARA Youth System</div><div class="proj-stack">System Design · Intelligence Layer</div><div class="proj-desc">A youth-system concept connecting skills, teams, opportunities and income pathways.</div><div class="proj-tags"><span class="pt2">System Design</span><span class="pt2">AI Concept</span></div></div>
     </div>
 
     <div class="proj-card" data-category="ai">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/health-assistants/700/440" alt="Digital health assistant concepts" loading="lazy"><span class="proj-num">09 · Health Tech</span></div>
+      <div class="proj-thumb"><img src="assets/images/projects/09-health-assistants.jpg" alt="Digital health assistant concepts" loading="lazy"><span class="proj-num">09 · Health Tech</span></div>
       <div class="proj-body"><div class="proj-name serif">Health Assistant Family</div><div class="proj-stack">WhatsApp · AI Concept · Multilingual</div><div class="proj-desc">IROZA, AKALIZA and MUGWANEZA — health assistant concepts for breast, cervical and cardiovascular awareness.</div><div class="proj-tags"><span class="pt2">AI</span><span class="pt2">Health</span></div></div>
     </div>
 
     <div class="proj-card" data-category="web">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/universal-cars/700/440" alt="Universal Cars Rental booking platform" loading="lazy"><span class="proj-num">10 · Booking Platform</span></div>
+      <div class="proj-thumb"><img src="assets/images/projects/10-universal-cars-rental.jpg" alt="Universal Cars Rental booking platform" loading="lazy"><span class="proj-num">10 · Booking Platform</span></div>
       <div class="proj-body"><div class="proj-name serif">Universal Cars Rental Ltd</div><div class="proj-stack">PHP · MySQL · Booking · Admin</div><div class="proj-desc">An expanded car-rental platform with booking flows, admin controls and payment integration planning.</div><div class="proj-tags"><span class="pt2">Booking</span><span class="pt2">Admin</span></div></div>
     </div>
 
     <div class="proj-card" data-category="community">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/umusaruro-coop/700/440" alt="Umusaruro cooperative agriculture system" loading="lazy"><span class="proj-num">11 · In Development</span></div>
+      <div class="proj-thumb"><img src="assets/images/projects/11-umusaruro-cooperative.jpg" alt="Umusaruro cooperative agriculture system" loading="lazy"><span class="proj-num">11 · In Development</span></div>
       <div class="proj-body"><div class="proj-name serif">Umusaruro Cooperative System</div><div class="proj-stack">Cooperative · SMS/USSD · MoMo</div><div class="proj-desc">A cooperative management system connecting farmers, cooperatives and buyers through records and payments.</div><div class="proj-tags"><span class="pt2">Agriculture</span><span class="pt2">SMS/USSD</span></div></div>
     </div>
 
     <div class="proj-card" data-category="community">
-      <div class="proj-thumb"><img src="https://picsum.photos/seed/crm-workflow/700/440" alt="BCIEA sponsor and partner CRM workflow" loading="lazy"><span class="proj-num">12 · Operations</span></div>
+      <div class="proj-thumb"><img src="assets/images/projects/12-crm-workflow.jpg" alt="BCIEA sponsor and partner CRM workflow" loading="lazy"><span class="proj-num">12 · Operations</span></div>
       <div class="proj-body"><div class="proj-name serif">Sponsor & Partner CRM</div><div class="proj-stack">CRM · Contact Research · Outreach</div><div class="proj-desc">Structured sponsor and partner pipeline covering research, classification and outreach for fundraising.</div><div class="proj-tags"><span class="pt2">CRM</span><span class="pt2">NGO</span></div></div>
     </div>
 
@@ -693,13 +720,13 @@ footer{background:var(--ink);padding:60px 56px 0;}
     <p style="margin-top:14px;font-size:14.5px;color:var(--muted-l)">A collection of photography, videography and creative visual production work.</p>
   </div>
   <div class="gal-scroller reveal">
-    <div class="gal-item"><span class="gal-tag">PHOTO</span><img src="https://picsum.photos/seed/event-photo-rw/480/600" alt="Event photography" loading="lazy"><div class="gal-cap serif">Event Photography</div></div>
-    <div class="gal-item"><span class="gal-tag" style="background:var(--teal)">VIDEO</span><img src="https://picsum.photos/seed/video-production-rw/480/600" alt="Video production still" loading="lazy"><div class="gal-cap serif">Video Production</div></div>
-    <div class="gal-item"><span class="gal-tag">PHOTO</span><img src="https://picsum.photos/seed/landscape-rwanda/480/600" alt="Landscape photography" loading="lazy"><div class="gal-cap serif">Landscape</div></div>
-    <div class="gal-item"><span class="gal-tag">PHOTO</span><img src="https://picsum.photos/seed/portrait-studio/480/600" alt="Portrait photography" loading="lazy"><div class="gal-cap serif">Portrait</div></div>
-    <div class="gal-item"><span class="gal-tag">PHOTO</span><img src="https://picsum.photos/seed/studio-work-2/480/600" alt="Studio work" loading="lazy"><div class="gal-cap serif">Studio Work</div></div>
-    <div class="gal-item"><span class="gal-tag">PHOTO</span><img src="https://picsum.photos/seed/kigali-city-2/480/600" alt="Kigali cityscape" loading="lazy"><div class="gal-cap serif">Rwanda · Kigali</div></div>
-    <div class="gal-item"><span class="gal-tag" style="background:var(--ochre)">EDIT</span><img src="https://picsum.photos/seed/creative-edit-2/480/600" alt="Creative photo edit" loading="lazy"><div class="gal-cap serif">Creative Edit</div></div>
+    <div class="gal-item"><span class="gal-tag">PHOTO</span><img src="assets/images/gallery/event-photography.jpg" alt="Event photography" loading="lazy"><div class="gal-cap serif">Event Photography</div></div>
+    <div class="gal-item"><span class="gal-tag" style="background:var(--teal)">VIDEO</span><img src="assets/images/gallery/video-production.jpg" alt="Video production still" loading="lazy"><div class="gal-cap serif">Video Production</div></div>
+    <div class="gal-item"><span class="gal-tag">PHOTO</span><img src="assets/images/gallery/landscape.jpg" alt="Landscape photography" loading="lazy"><div class="gal-cap serif">Landscape</div></div>
+    <div class="gal-item"><span class="gal-tag">PHOTO</span><img src="assets/images/gallery/portrait.jpg" alt="Portrait photography" loading="lazy"><div class="gal-cap serif">Portrait</div></div>
+    <div class="gal-item"><span class="gal-tag">PHOTO</span><img src="assets/images/gallery/studio-work.jpg" alt="Studio work" loading="lazy"><div class="gal-cap serif">Studio Work</div></div>
+    <div class="gal-item"><span class="gal-tag">PHOTO</span><img src="assets/images/gallery/kigali-city.jpg" alt="Kigali cityscape" loading="lazy"><div class="gal-cap serif">Rwanda · Kigali</div></div>
+    <div class="gal-item"><span class="gal-tag" style="background:var(--ochre)">EDIT</span><img src="assets/images/gallery/creative-edit.jpg" alt="Creative photo edit" loading="lazy"><div class="gal-cap serif">Creative Edit</div></div>
   </div>
 </section>
 
@@ -922,6 +949,7 @@ function attachTilt(el, strength){
   el.addEventListener('mouseleave', ()=>{ el.style.transform = 'rotateY(0deg) rotateX(0deg)'; });
 }
 attachTilt(document.getElementById('idCard'), 14);
+attachTilt(document.getElementById('heroPhoto'), 10);
 
 /* ── Scroll reveal ── */
 const revealObs = new IntersectionObserver(entries=>{
